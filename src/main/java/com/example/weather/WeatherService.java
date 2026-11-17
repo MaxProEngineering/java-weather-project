@@ -65,12 +65,10 @@ public class WeatherService {
         System.out.println("=================== Сервис по получению метеорологических данных ===================");
 
         // Чтение и валидация координаты lat с диапазоном от -90 до 90
-        double lat = readCoordinate(scanner, "Введите значение координаты lat (широта, в градусах) от -90 до 90 (например, 55.83): ",
-                -90.0, 90.0);
+        double lat = readCoordinate(scanner, "Введите значение координаты lat (широта, в градусах) от -90 до 90 (например, 55.83): ", -90.0, 90.0);
 
         // Чтение и валидация координаты lon с диапазоном от -180 до 180
-        double lon = readCoordinate(scanner, "Введите значение координаты lon (долгота, в градусах) от -180 до 180 (например, 37.61): ",
-                -180.0, 180.0);
+        double lon = readCoordinate(scanner, "Введите значение координаты lon (долгота, в градусах) от -180 до 180 (например, 37.61): ", -180.0, 180.0);
 
         // Чтение и валидация параметра limit с ограничением по максимуму
         int limit = readLimit(scanner);
@@ -99,8 +97,7 @@ public class WeatherService {
         HttpClient client = HttpClient.newHttpClient();
 
         // Отправка запроса и получение ответа в виде строки
-        HttpResponse<String> response =
-                client.send(request, HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
         // Проверка того, что код ответа отличается от 200 (успех)
         if (response.statusCode() != 200) {
@@ -227,13 +224,12 @@ public class WeatherService {
 
     // Объявление метода расчёта и вывода средней температуры по дням
     private static void printAverage(int daysUsed, ForecastResponse data) {
-        // Создание форматтера дат в виде дд.ММ.гггг
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-
         // Объявление накопителя суммы температур
         double sum = 0;
         // Объявление счётчика дней с корректными данными
         int validDays = 0;
+        // Создание форматтера дат в виде дд.ММ.гггг
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         // Создание построителя строк для таблицы прогноза
         StringBuilder table = new StringBuilder();
         // Добавление строки заголовка таблицы в построитель
@@ -285,9 +281,9 @@ public class WeatherService {
             System.out.printf("   Справочно:%n   Таблица с прогнозом среднедневной температуры (parts.day.temp_avg) для каждого дня и их среднее арифметическое:%n");
             // Добавление разделителя перед итоговой строкой
             table.append("   -------------+---------------").append(System.lineSeparator());
-            // Добавление в таблицу итоговой строки со средней температурой
+            // Добавление в таблицу итоговой строки со средней арифметической температурой от среднедневных температур за период
             table.append(String.format("   %-12s | %10.1f%n", "Средняя", averageTemp));
-            // Вывод собранной таблицы прогноза по дням
+            // Вывод собранной таблицы прогнозов по дням
             System.out.print(table);
         // Начало ветки else — если валидных дней нет
         } else {
