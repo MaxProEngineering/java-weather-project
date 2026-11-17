@@ -1,0 +1,11 @@
+# Результаты сборки Maven
+target/
+
+# Личные настройки IntelliJ IDEA
+.idea/
+*.iml
+out/
+
+# Системные файлы
+.DS_Store
+Thumbs.db
