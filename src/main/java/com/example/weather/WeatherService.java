@@ -105,7 +105,7 @@ public class WeatherService {
         // Проверка того, что код ответа отличается от 200 (успех)
         if (response.statusCode() != 200) {
             // Вывод сообщения о коде ошибки от сервера
-            System.out.println("   Сервер вернул ошибку HTTP " + statusText(response.statusCode()));
+            System.out.println("   Сервер вернул ошибку " + statusText(response.statusCode()));
             // Вывод тела ответа с описанием ошибки
             System.out.println("   Тело ответа: " + response.body());
             // Завершение работы метода при ошибке запроса
@@ -195,7 +195,7 @@ public class WeatherService {
             }
         }
 
-        // Проверка того, что пользователь дал согласие на вывод JSON-ответа в красивом формате
+        // Проверка того, что пользователь дал согласие на вывод JSON-ответа в читаемом отформатированном виде
         if (answer.equalsIgnoreCase("да")) {
             // Вывод заголовка отформатированного ответа
             System.out.println("   ---------- JSON-ответ в читаемом отформатированном виде ----------");
@@ -298,7 +298,7 @@ public class WeatherService {
 
     // Объявление метода чтения и валидации координаты
     private static double readCoordinate(Scanner scanner, String prompt, double min, double max) {
-        // Начало бесконечного цикла — повторяем ввод до корректного значения
+        // Начало бесконечного цикла (ввод повторяеися до корректного значения)
         while (true) {
             // Вывод приглашения ко вводу значения
             System.out.print(prompt);
